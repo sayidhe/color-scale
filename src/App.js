@@ -319,6 +319,7 @@ const ScaleApp = () => {
             mainColor={mainColor}
             darkColors={darkColors}
             lightColors={lightColors}
+            bgColor={document.documentElement.style.getPropertyValue('--bodyBg')}
           />
 
           <InputsRow>

@@ -19,8 +19,8 @@ const ColorBlockContainer = styled.div`
   height: 72px;
   max-width: ${props => props.wide ? 192 : 72}px;
   ${props => props.wide && 'min-width: 192px'};
-  width: 100%;
-  ${props => !props.hasValidColor && 'box-shadow: inset 0 0 0 2px #ddd'};
+  width: 100px;
+  ${props => props.hasValidColor && 'box-shadow: inset 0 0 0 2px #ddd'};
   flex-shrink: 1;
   cursor: pointer;
 

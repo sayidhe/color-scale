@@ -74,3 +74,19 @@ export const getColorsList = (colorsAmount, colorsShiftAmount, mixColor, rotate,
 
   return colorsList
 }
+
+
+// Utility Function for Contrast Ratio
+
+export const getContrastRatio = (color1, color2) => {
+  const lum1 = Color(color1).luminosity();
+  const lum2 = Color(color2).luminosity();
+  const ratio = (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
+  return ratio;
+};
+
+export const checkWcagCompliance = (contrastRatio) => {
+  const AA = contrastRatio >= 4.5 ? 'AA' : contrastRatio >= 3 ? 'AA-' : 'AA Fail';
+  const AAA = contrastRatio >= 7 ? 'AAA' : contrastRatio >= 4.5 ? 'AAA-' : 'AAA Fail';
+  return { AA, AAA };
+};
