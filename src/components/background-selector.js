@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import Color from 'color';
+import React from 'react'
+import styled from 'styled-components'
+import Color from 'color'
 
 const DotsWrapper = styled.div`
   height: 100%;
   display: flex;
-`;
+`
 
 const DotsColumn = styled.div`
   & + .DotsColumn {
@@ -15,7 +15,7 @@ const DotsColumn = styled.div`
   .Dot + .Dot {
     margin-top: 4px;
   }
-`;
+`
 
 const Dot = styled.div`
   width: 32px;
@@ -24,7 +24,7 @@ const Dot = styled.div`
   background-color: ${props => props.color};
   box-shadow: inset 0 0 0.5px 1px var(--borderColor);
   cursor: pointer;
-`;
+`
 
 const Title = styled.div`
   font-size: 12px;
@@ -32,11 +32,11 @@ const Title = styled.div`
   line-height: 16px;
   margin-bottom: 16px;
   min-height: 32px;
-`;
+`
 
 const getBorderColor = (color) => {
   return Color(color).luminosity() < 0.5 ? 'hsla(0,0%,100%,0.15)' : 'hsla(0,0%,0%,0.15)'
-};
+}
 
 const BackgroundSelector = ({
   setBgColor,
@@ -44,6 +44,7 @@ const BackgroundSelector = ({
   lightColors,
   lightColorsAmount,
 }) => {
+
   return (
     <React.Fragment>
       <Title>Background</Title>
@@ -53,18 +54,28 @@ const BackgroundSelector = ({
           <Dot className="Dot" color='white' onClick={() => setBgColor('white')} style={{ '--borderColor': getBorderColor('white') }}/>
         </DotsColumn>
         <DotsColumn className="DotsColumn">
-          {darkColors.slice(0, 2).map((color, index) => (
-            <Dot className="Dot" key={index} color={color} onClick={() => setBgColor(`d-${index}`)} style={{ '--borderColor': getBorderColor(color) }} />
-          ))}
+          {darkColors.map((color, index) => {
+            if(index < 2) {
+              return(
+                <Dot className="Dot" key={index} color={color} onClick={() => setBgColor(`d-${index}`)} style={{ '--borderColor': getBorderColor(color) }} />
+              )
+            }
+            return null;
+          })}
         </DotsColumn>
         <DotsColumn className="DotsColumn">
-          {lightColors.slice(-2).map((color, index) => (
-            <Dot className="Dot" key={index} color={color} onClick={() => setBgColor(`l-${index}`)} style={{ '--borderColor': getBorderColor(color) }} />
-          ))}
+          {lightColors.map((color, index) => {
+            if(index > lightColorsAmount - 3) {
+              return(
+                <Dot className="Dot" key={index} color={color} onClick={() => setBgColor(`l-${lightColorsAmount - index}`)} style={{ '--borderColor': getBorderColor(color) }} />
+              )
+            }
+            return null;
+          })}
         </DotsColumn>
       </DotsWrapper>
     </React.Fragment>
   )
-};
+}
 
-export default BackgroundSelector;
+export default BackgroundSelector
