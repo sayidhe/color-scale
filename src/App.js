@@ -243,18 +243,24 @@ const ScaleApp = () => {
 
   const setBodyColorVar = () => {
     const givenColor = isValidHex(numberToHex(mainColor)) ? numberToHex(mainColor) : errorColor
+    console.log(givenColor)
     
     const getMixColor = () => {
       if(bgColor) {
         if(bgColor.includes('l-') || bgColor.includes('white')) {
           return 'black'
-        } else {
+        } 
+        if(bgColor.includes('d-') && !isValidHex(numberToHex(mainColor))) {
+          return 'black'
+        }
+        else {
           return 'white'
         }
       } else {
         return 'white'
       }
     }
+    
     const bodyColor = Color(givenColor).mix(Color(getMixColor()), 0.5).string()
     const bodyDimmed = Color(givenColor).mix(Color(getMixColor()), 0.5).fade(0.7).string()
     const bodyXDimmed = Color(givenColor).mix(Color(getMixColor()), 0.5).fade(0.9).string()
