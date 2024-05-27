@@ -75,18 +75,36 @@ export const getColorsList = (colorsAmount, colorsShiftAmount, mixColor, rotate,
   return colorsList
 }
 
-
-// Utility Function for Contrast Ratio
-
+// Utility function to calculate the luminosity contrast ratio between two colors
 export const getContrastRatio = (color1, color2) => {
-  const lum1 = Color(color1).luminosity();
-  const lum2 = Color(color2).luminosity();
-  const ratio = (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
-  return ratio;
+  try {
+    const lum1 = Color(color1).luminosity();
+    const lum2 = Color(color2).luminosity();
+    const ratio = (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
+    return ratio;
+  } catch (error) {
+    console.error("Invalid color input:", error);
+    return null;
+  }
 };
 
-export const checkWcagCompliance = (contrastRatio) => {
-  const AA = contrastRatio >= 4.5 ? 'AA' : contrastRatio >= 3 ? 'AA-' : 'AA Fail';
-  const AAA = contrastRatio >= 7 ? 'AAA' : contrastRatio >= 4.5 ? 'AAA-' : 'AAA Fail';
-  return { AA, AAA };
+// Function to check WCAG AA compliance
+export const checkAaCompliance = (contrastRatio) => {
+  if (contrastRatio >= 4.5) {
+    return 'AA Pass';
+  }
+  return 'AA Fail';
 };
+
+// Function to check WCAG AAA compliance
+export const checkAaaCompliance = (contrastRatio) => {
+  if (contrastRatio >= 7) {
+    return 'AAA Pass';
+  }
+  return 'AAA Fail';
+};
+
+// Example usage:
+const contrastRatio = getContrastRatio('#000', '#FFF');
+console.log(checkAaCompliance(contrastRatio)); // Outputs: AA Pass
+console.log(checkAaaCompliance(contrastRatio)); // Outputs: AAA Pass
