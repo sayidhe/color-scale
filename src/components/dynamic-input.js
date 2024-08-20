@@ -72,6 +72,8 @@ const DynamicInputRoot = styled.div`
 `
 
 const DynamicInput = ({ value, onChange, color, prefix, sufix, withSlider, withRgbSlider, label, min, max, ...rest }) => {
+  // console.log(Color(color).hsl().string());
+  // console.log(Color(color).hsv().string());
   return (
     <div>
       <DynamicInputLabel>
