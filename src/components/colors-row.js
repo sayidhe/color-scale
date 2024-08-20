@@ -72,8 +72,8 @@ const Tooltip = ({ show, rows, position }) => {
 
 const ColorInfo = ({ color, bgColor, main }) => {
   const contrastRatio = getContrastRatio(color, bgColor);
-  const AA = checkAaCompliance(contrastRatio);
-  const AAA = checkAaaCompliance(contrastRatio);
+  const AA = contrastRatio !== null ? checkAaCompliance(contrastRatio) : 'N/A';
+  const AAA = contrastRatio !== null ? checkAaaCompliance(contrastRatio) : 'N/A';
 
   const [showAaTooltip, setShowAaTooltip] = useState(false);
   const [showAaaTooltip, setShowAaaTooltip] = useState(false);
@@ -91,7 +91,7 @@ const ColorInfo = ({ color, bgColor, main }) => {
     <ColorContainer main={main} color={color}>
       <ColorBlock style={{ background: color }} hasValidColor={isValidHex(color)} color={color} />
       <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '30px' }}>
-        <div>{contrastRatio.toFixed(2)}</div>
+        <div>{contrastRatio !== null ? contrastRatio.toFixed(2) : 'N/A'}</div>
         <div
           onMouseOver={() => setShowAaTooltip(true)}
           onMouseOut={() => setShowAaTooltip(false)}
@@ -112,6 +112,7 @@ const ColorInfo = ({ color, bgColor, main }) => {
     </ColorContainer>
   );
 };
+
 
 const ColorsRow = ({ mainColor, darkColors, lightColors, bgColor, disabled }) => {
   const mainHexColor = isValidHex(numberToHex(mainColor)) ? numberToHex(mainColor) : errorColor;
