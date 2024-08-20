@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Color from 'color';
 import ColorBlock from './color-block';
-import Color from 'color'
 import { isValidHex, numberToHex, errorColor, getContrastRatio, checkAaCompliance, checkAaaCompliance } from '../utils';
 
 const ColorBlocksRow = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 88px;
-  ${props => props.disabled && `pointer-events: none`};
-`
+  ${(props) => props.disabled && `pointer-events: none`};
+`;
 
 const ColorContainer = styled.div`
   position: relative;
   margin: 0 8px;
-  ${props => props.main && `
+  ${(props) =>
+    props.main &&
+    `
     &::after {
       content: '';
       position: absolute;
@@ -25,7 +27,9 @@ const ColorContainer = styled.div`
       height: 0;
       border-left: 10px solid transparent; // Adjust size of the triangle
       border-right: 10px solid transparent;
-      border-bottom: 16px solid black; // Adjust color to match your theme
+      border-bottom: 16px solid ${
+        Color(props.color).luminosity() < 0.5 ? 'white' : 'black'
+      };
     }
   `}
 `;
@@ -39,17 +43,19 @@ const Tooltip = ({ show, rows, position }) => {
   const finalPosition = position || defaultPosition;
 
   return (
-    <div style={{
-      position: 'absolute',
-      backgroundColor: 'white',
-      border: '1px solid black',
-      padding: '5px',
-      zIndex: 1,
-      width: 'auto',
-      ...finalPosition,
-      whiteSpace: 'nowrap',
-      textAlign: 'left',
-    }}>
+    <div
+      style={{
+        position: 'absolute',
+        backgroundColor: 'white',
+        border: '1px solid black',
+        padding: '5px',
+        zIndex: 1,
+        width: 'auto',
+        ...finalPosition,
+        whiteSpace: 'nowrap',
+        textAlign: 'left',
+      }}
+    >
       <table>
         <tbody>
           {rows.map((row, index) => (
@@ -74,29 +80,31 @@ const ColorInfo = ({ color, bgColor, main }) => {
 
   const aaRows = [
     { label: 'Regular text(<24px/19px bold)', value: `(${AA === 'AA Pass' ? 'Pass' : 'Fail'}) Minimum: 4.5` },
-    { label: 'Large text(>24px/19px bold)', value: `(${contrastRatio >= 3 ? 'Pass' : 'Fail'}) Minimum: 3` }
+    { label: 'Large text(>24px/19px bold)', value: `(${contrastRatio >= 3 ? 'Pass' : 'Fail'}) Minimum: 3` },
   ];
 
   const aaaRows = [
-    { label: 'UI Components & graphics', value: `(${AAA === 'AAA Pass' ? 'Pass' : 'Fail'}) Minimum: 7` }
+    { label: 'UI Components & graphics', value: `(${AAA === 'AAA Pass' ? 'Pass' : 'Fail'}) Minimum: 7` },
   ];
 
   return (
-    <ColorContainer main={main}>
+    <ColorContainer main={main} color={color}>
       <ColorBlock style={{ background: color }} hasValidColor={isValidHex(color)} color={color} />
       <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '30px' }}>
         <div>{contrastRatio.toFixed(2)}</div>
-        <div 
+        <div
           onMouseOver={() => setShowAaTooltip(true)}
           onMouseOut={() => setShowAaTooltip(false)}
-          style={{ position: 'relative' }}>
+          style={{ position: 'relative' }}
+        >
           {AA}
           <Tooltip show={showAaTooltip} rows={aaRows} />
         </div>
-        <div 
+        <div
           onMouseOver={() => setShowAaaTooltip(true)}
           onMouseOut={() => setShowAaaTooltip(false)}
-          style={{ position: 'relative' }}>
+          style={{ position: 'relative' }}
+        >
           {AAA}
           <Tooltip show={showAaaTooltip} rows={aaaRows} />
         </div>
@@ -105,14 +113,7 @@ const ColorInfo = ({ color, bgColor, main }) => {
   );
 };
 
-
-const ColorsRow = ({
-  mainColor,
-  darkColors,
-  lightColors,
-  bgColor,
-  disabled
-}) => {
+const ColorsRow = ({ mainColor, darkColors, lightColors, bgColor, disabled }) => {
   const mainHexColor = isValidHex(numberToHex(mainColor)) ? numberToHex(mainColor) : errorColor;
 
   return (
@@ -128,6 +129,6 @@ const ColorsRow = ({
       ))}
     </ColorBlocksRow>
   );
-}
+};
 
 export default ColorsRow;

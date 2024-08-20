@@ -19,7 +19,7 @@ const FooterSection = styled.div`
 
 const Footer = () => (
   <FooterSection>
-    <a href='https://hihayk.github.io/scale'><h1>Scale</h1></a>&nbsp; · &nbsp;made by <a href='http://hihayk.com' target='_blank' rel='noopener noreferrer'>Hayk</a>&nbsp; · &nbsp;<a href='https://github.com/hihayk/scale' target='_blank' rel='noopener noreferrer'>GitHub</a>
+    <a href='https://github.sayidhe.com/color-scale/'><h1>Scale</h1></a>&nbsp; · &nbsp;made by <a href='http://hihayk.com' target='_blank' rel='noopener noreferrer'>Hayk</a>&nbsp; · &nbsp;<a href='https://github.com/hihayk/scale' target='_blank' rel='noopener noreferrer'>GitHub</a>
     &nbsp; · &nbsp;<Link to="/gallery">Gallery</Link>
   </FooterSection>
 )
