@@ -34,7 +34,7 @@ const ColorContainer = styled.div`
   `}
 `;
 
-const Tooltip = ({ show, rows, position }) => {
+const Tooltip = ({ show, rows, position, status }) => {
   if (!show) {
     return null;
   }
@@ -42,12 +42,16 @@ const Tooltip = ({ show, rows, position }) => {
   const defaultPosition = { top: '20px', left: '50%', transform: 'translateX(-50%)' };
   const finalPosition = position || defaultPosition;
 
+  const backgroundColor = status === 'Pass' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)';
+  const textColor = status === 'Pass' ? 'black' : 'white';
+
   return (
     <div
       style={{
         position: 'absolute',
-        backgroundColor: 'white',
-        border: '1px solid black',
+        backgroundColor: backgroundColor,
+        color: textColor,
+        border: `1px solid ${textColor}`,
         padding: '5px',
         zIndex: 1,
         width: 'auto',
@@ -98,7 +102,7 @@ const ColorInfo = ({ color, bgColor, main }) => {
           style={{ position: 'relative' }}
         >
           {AA}
-          <Tooltip show={showAaTooltip} rows={aaRows} />
+          <Tooltip show={showAaTooltip} rows={aaRows} status={AA === 'AA Pass' ? 'Pass' : 'Fail'} />
         </div>
         <div
           onMouseOver={() => setShowAaaTooltip(true)}
@@ -106,13 +110,12 @@ const ColorInfo = ({ color, bgColor, main }) => {
           style={{ position: 'relative' }}
         >
           {AAA}
-          <Tooltip show={showAaaTooltip} rows={aaaRows} />
+          <Tooltip show={showAaaTooltip} rows={aaaRows} status={AAA === 'AAA Pass' ? 'Pass' : 'Fail'} />
         </div>
       </div>
     </ColorContainer>
   );
 };
-
 
 const ColorsRow = ({ mainColor, darkColors, lightColors, bgColor, disabled }) => {
   const mainHexColor = isValidHex(numberToHex(mainColor)) ? numberToHex(mainColor) : errorColor;

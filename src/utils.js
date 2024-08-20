@@ -91,7 +91,7 @@ export const getContrastRatio = (color1, color2) => {
 // Function to check WCAG AA compliance
 export const checkAaCompliance = (contrastRatio) => {
   if (contrastRatio >= 4.5) {
-    return 'AA Pass';
+    return '✅ AA Pass';
   }
   return 'AA Fail';
 };
@@ -99,7 +99,7 @@ export const checkAaCompliance = (contrastRatio) => {
 // Function to check WCAG AAA compliance
 export const checkAaaCompliance = (contrastRatio) => {
   if (contrastRatio >= 7) {
-    return 'AAA Pass';
+    return '✅ AAA Pass';
   }
   return 'AAA Fail';
 };
