@@ -92,7 +92,7 @@ const ColorInfo = ({ color, bgColor, $main }) => {
   ];
 
   return (
-    <ColorContainer $main="true" color={color}>
+    <ColorContainer $main={$main} color={color}>
       <ColorBlock style={{ background: color }} $hasvalidcolor={isValidHex(color)} color={color} />
       <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '30px' }}>
         <div>{contrastRatio !== null ? contrastRatio.toFixed(2) : 'N/A'}</div>

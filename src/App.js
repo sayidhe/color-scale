@@ -181,6 +181,12 @@ const ScaleApp = () => {
     updateRgbWithMainColor(typedColorFiltered)
   }
 
+  const rgbToMainColor = (newR, newG, newB) => {
+    if (newR !== undefined && newG !== undefined && newB !== undefined) {
+      setMainColor(hexToNumber(Color(`rgb(${newR}, ${newG}, ${newB})`).hex()));
+    }
+  };
+
   const handleRChange = (value) => {
     const newR = parseInt(value, 10);
     setR(newR);
@@ -197,10 +203,6 @@ const ScaleApp = () => {
     const newB = parseInt(value, 10);
     setB(newB);
     rgbToMainColor(r, g, newB);
-  };
-
-  const rgbToMainColor = (newR, newG, newB) => {
-    setMainColor(hexToNumber(Color(`rgb(${newR}, ${newG}, ${newB})`).hex()));
   };
   
   const bgRefToNumber = (ref) => {

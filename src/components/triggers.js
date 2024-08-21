@@ -76,30 +76,37 @@ const Triggers = ({
   rgbToMainColor,
 }) => {
   const randomState = () => {
-    setR(randomNumber(0, 255))
-    setG(randomNumber(0, 255))
-    setB(randomNumber(0, 255))
+    const newR = randomNumber(0, 255);
+    const newG = randomNumber(0, 255);
+    const newB = randomNumber(0, 255);
 
-    setDarkColorsAmount(randomNumber(2, 8))
-    setLightColorsAmount(randomNumber(2, 8))
-    
-    setDarkestAmount(randomNumber(40, 80))
-    setLightestAmount(randomNumber(40, 80))
-    
-    setLightSaturation(randomNumber(0, 25))
-    setDarkSaturation(randomNumber(0, 55))
-    
-    setDarkColorsMixRotate(randomNumber(0, 70))
-    setLightColorsMixRotate(randomNumber(0, 70))
-    rgbToMainColor()
-  }
-  
+    setR(newR);
+    setG(newG);
+    setB(newB);
+
+    setDarkColorsAmount(randomNumber(2, 8));
+    setLightColorsAmount(randomNumber(2, 8));
+    setDarkestAmount(randomNumber(40, 80));
+    setLightestAmount(randomNumber(40, 80));
+    setLightSaturation(randomNumber(0, 25));
+    setDarkSaturation(randomNumber(0, 55));
+    setDarkColorsMixRotate(randomNumber(0, 70));
+    setLightColorsMixRotate(randomNumber(0, 70));
+
+    rgbToMainColor(newR, newG, newB);
+  };
+
   const randomColor = () => {
-    setR(randomNumber(0, 255))
-    setG(randomNumber(0, 255))
-    setB(randomNumber(0, 255))
-    rgbToMainColor()
-  }
+    const newR = randomNumber(0, 255);
+    const newG = randomNumber(0, 255);
+    const newB = randomNumber(0, 255);
+
+    setR(newR);
+    setG(newG);
+    setB(newB);
+    
+    rgbToMainColor(newR, newG, newB);
+  };
 
   return (
     <React.Fragment>
