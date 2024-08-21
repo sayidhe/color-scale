@@ -451,7 +451,7 @@ const ScaleApp = () => {
 }
 
 const App = () => {
-  console.log('Base URL:', process.env.PUBLIC_URL);
+  // console.log('Base URL:', process.env.PUBLIC_URL);
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Routes>
