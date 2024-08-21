@@ -95,18 +95,18 @@ const GalleryApp = () => (
           <a href={`https://github.sayidhe.com/color-scale/${value.scaleValue}`}>
             <ColorBlocksRow disabled>
               {getColorsList(getColorsObject().darkColorsAmount, getColorsObject().darkestAmount, 'black', getColorsObject().darkColorsMixRotate, getColorsObject().darkSaturation, value).reverse().map((color, index) => (
-                <ColorBlock style={{ background: color }} hasValidColor={isValidHex(numberToHex(getColorsObject().mainColor))} color={color} key={index} />
+                <ColorBlock style={{ background: color }} hasvalidcolor={isValidHex(numberToHex(getColorsObject().mainColor))} color={color} key={index} />
               ))}
 
               <ColorBlock
-                wide
+                $wide="true"
                 style={{ background: isValidHex(numberToHex(getColorsObject().mainColor)) ? numberToHex(getColorsObject().mainColor) : errorColor }}
-                hasValidColor={isValidHex(numberToHex(getColorsObject().mainColor))}
+                $hasvalidcolor={isValidHex(numberToHex(getColorsObject().mainColor))}
                 color={numberToHex(getColorsObject().mainColor)}
               />
 
               {getColorsList(getColorsObject().lightColorsAmount, getColorsObject().lightestAmount, 'white', getColorsObject().lightColorsMixRotate, getColorsObject().lightSaturation, value).map((color, index) => (
-                <ColorBlock style={{ background: color }} hasValidColor={isValidHex(numberToHex(getColorsObject().mainColor))} color={color} key={index} />
+                <ColorBlock style={{ background: color }} $hasvalidcolor={isValidHex(numberToHex(getColorsObject().mainColor))} color={color} key={index} />
               ))}
             </ColorBlocksRow>
 

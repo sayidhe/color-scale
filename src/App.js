@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import DynamicInput from './components/dynamic-input.js'
 import Footer from './components/footer.js'
 import { isValidHex, numberToHex, hexToNumber, errorColor, defaultState, getColorsList } from './utils.js'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GalleryApp from './components/gallery-app'
 import ColorsRow from './components/colors-row'
 import MainColorSelector from './components/main-color-selector'
@@ -56,7 +56,7 @@ const InputsRow = styled.div`
 const InputsRowItem = styled.div`
   margin-right: 40px;
   flex-shrink: 0;
-  width: ${props => props.wide ? 192 : 96}px;
+  width: ${props => props.$wide ? 192 : 96}px;
 `
 
 const InputsRowItemSeparataor = styled.div`
@@ -244,7 +244,7 @@ const ScaleApp = () => {
 
   const setBodyColorVar = () => {
     const givenColor = isValidHex(numberToHex(mainColor)) ? numberToHex(mainColor) : errorColor
-    console.log(givenColor)
+    // console.log(givenColor)
     
     const getMixColor = () => {
       if(bgColor) {
@@ -451,11 +451,11 @@ const ScaleApp = () => {
 
 const App = () => (
   <Router basename={process.env.PUBLIC_URL}>
-    <div>
-      <Route exact path="/" component={ScaleApp} />
-      <Route exact path="/gallery" component={GalleryApp} />
-    </div>
+    <Routes>
+      <Route path="/" element={<ScaleApp />} />
+      <Route path="/gallery" element={<GalleryApp />} />
+    </Routes>
   </Router>
-)
+);
 
 export default App

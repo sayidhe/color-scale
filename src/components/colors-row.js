@@ -15,7 +15,7 @@ const ColorContainer = styled.div`
   position: relative;
   margin: 0 8px;
   ${(props) =>
-    props.main &&
+    props.$main &&
     `
     &::after {
       content: '';
@@ -74,7 +74,7 @@ const Tooltip = ({ show, rows, position, status }) => {
   );
 };
 
-const ColorInfo = ({ color, bgColor, main }) => {
+const ColorInfo = ({ color, bgColor, $main }) => {
   const contrastRatio = getContrastRatio(color, bgColor);
   const AA = contrastRatio !== null ? checkAaCompliance(contrastRatio) : 'N/A';
   const AAA = contrastRatio !== null ? checkAaaCompliance(contrastRatio) : 'N/A';
@@ -92,8 +92,8 @@ const ColorInfo = ({ color, bgColor, main }) => {
   ];
 
   return (
-    <ColorContainer main={main} color={color}>
-      <ColorBlock style={{ background: color }} hasValidColor={isValidHex(color)} color={color} />
+    <ColorContainer $main="true" color={color}>
+      <ColorBlock style={{ background: color }} $hasvalidcolor={isValidHex(color)} color={color} />
       <div style={{ fontSize: '12px', textAlign: 'center', marginTop: '30px' }}>
         <div>{contrastRatio !== null ? contrastRatio.toFixed(2) : 'N/A'}</div>
         <div
@@ -126,7 +126,7 @@ const ColorsRow = ({ mainColor, darkColors, lightColors, bgColor, disabled }) =>
         <ColorInfo key={`dark-${index}`} color={Color(color).hex()} bgColor={bgColor} />
       ))}
 
-      <ColorInfo color={mainHexColor} bgColor={bgColor} main={true} />
+      <ColorInfo color={mainHexColor} bgColor={bgColor} $main="true" />
 
       {lightColors.map((color, index) => (
         <ColorInfo key={`light-${index}`} color={Color(color).hex()} bgColor={bgColor} />

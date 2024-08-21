@@ -15,7 +15,7 @@ const InputsRow = styled.div`
 const InputsRowItem = styled.div`
   margin-right: 40px;
   flex-shrink: 0;
-  width: ${props => props.wide ? 192 : 96}px;
+  width: ${props => props.$wide ? 192 : 96}px;
 `
 
 const SliderLabel = styled.div`
@@ -46,7 +46,7 @@ const MainColorSelector = ({
   onBChange,
 }) => (
   <InputsRow>
-    <InputsRowItem wide>
+    <InputsRowItem $wide="true">
       <DynamicInput color={numberToHex(mainColor)} value={mainColor} onChange={onInputChange} onBlur={onInputBlur} prefix='#' label='Color' />
 
       <SliderWrapper>

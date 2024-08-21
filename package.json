@@ -4,16 +4,17 @@
   "private": true,
   "homepage": "https://github.sayidhe.com/color-scale/",
   "dependencies": {
-    "color": "^3.0.0",
-    "gh-pages": "^1.2.0",
-    "react": "^16.4.1",
+    "color": "^4.2.3",
+    "gh-pages": "^6.1.1",
+    "react": "^18.3.1",
     "react-copy-to-clipboard": "^5.0.2",
-    "react-dom": "^16.4.1",
-    "react-router-dom": "^4.3.1",
-    "styled-components": "^3.3.3"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "styled-components": "^6.1.12"
   },
   "devDependencies": {
-    "react-scripts": "1.1.4"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -22,5 +23,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

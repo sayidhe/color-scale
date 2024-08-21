@@ -26,7 +26,7 @@ const DynamicInputField = styled.input`
   background-color: transparent;
   appearance: textfield;
   margin: 0;
-  ${props => props.isDisabled && `
+  ${props => props.$isdisabled && `
     user-select: none;
     opacity: 0.4;
   `};
@@ -80,21 +80,21 @@ const DynamicInput = ({ value, onChange, color, prefix, sufix, withSlider, withR
 
       <DynamicInputRoot>
         <InputWrapper color={color}>
-          <DynamicInputField color={color} value={prefix} type='text' readOnly isDisabled tabIndex={-1} />
+          <DynamicInputField color={color} value={prefix} type='text' readOnly $isdisabled="true" tabIndex={-1} />
           <DynamicInputValue>
             {prefix}
           </DynamicInputValue>
         </InputWrapper>
 
         <InputWrapper color={color}>
-          <DynamicInputField color={color} value={value} onChange={onChange} {...rest} min={min} max={max} />
+          <DynamicInputField color={color} value={value} onChange={onChange} {...rest} min={min} max={max} $isdisabled="true" />
           <DynamicInputValue>
             {value}
           </DynamicInputValue>
         </InputWrapper>
 
         <InputWrapper color={color}>
-          <DynamicInputField color={color} value={sufix} type='text' readOnly isDisabled tabIndex={-1} />
+          <DynamicInputField color={color} value={sufix} type='text' readOnly $isdisabled="true" tabIndex={-1} />
           <DynamicInputValue>
             {sufix}
           </DynamicInputValue>

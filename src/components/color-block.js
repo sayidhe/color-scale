@@ -17,10 +17,10 @@ const ColorBlockCode = styled.div`
 const ColorBlockContainer = styled.div`
   position: relative;
   height: 72px;
-  max-width: ${props => props.wide ? 192 : 72}px;
-  ${props => props.wide && 'min-width: 192px'};
+  max-width: ${props => props.$wide ? 192 : 72}px;
+  ${props => props.$wide && 'min-width: 192px'};
   width: 100px;
-  ${props => props.hasValidColor && 'box-shadow: inset 0 0 0 2px #ddd'};
+  ${props => props.$hasvalidcolor && 'box-shadow: inset 0 0 0 2px #ddd'};
   flex-shrink: 1;
   cursor: pointer;
 
@@ -30,7 +30,7 @@ const ColorBlockContainer = styled.div`
   }
 
   @media (max-width: 720px) {
-    ${props => props.wide && 'min-width: 96px'};
+    ${props => props.$wide && 'min-width: 96px'};
   }
 `
 
@@ -81,15 +81,15 @@ class ColorBlock extends Component {
   }
 
   render () {
-    const { wide, hasValidColor, color, ...rest } = this.props
+    const { $wide, $hasvalidcolor, color, ...rest } = this.props
 
     return (
-      <CopyToClipboard text={hasValidColor ? Color(color).hex() : null}>
-        <ColorBlockContainer wide={wide} hasValidColor={hasValidColor} {...rest} onClick={this.handleCopied}>
+      <CopyToClipboard text={$hasvalidcolor ? Color(color).hex() : null}>
+        <ColorBlockContainer $wide={$wide} $hasvalidcolor="true" {...rest} onClick={this.handleCopied}>
           <ColorBlockWrapper {...rest} />
 
           <ColorBlockCode className='ColorBlockCode'>
-            {hasValidColor ? Color(color).hex() : null}
+            {$hasvalidcolor ? Color(color).hex() : null}
             {this.state.copied && (
               <CopiedText copied={this.state.copied}>
                 {Color(color).hex()}

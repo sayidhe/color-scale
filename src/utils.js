@@ -105,6 +105,6 @@ export const checkAaaCompliance = (contrastRatio) => {
 };
 
 // Example usage:
-const contrastRatio = getContrastRatio('#000', '#FFF');
-console.log(checkAaCompliance(contrastRatio)); // Outputs: AA Pass
-console.log(checkAaaCompliance(contrastRatio)); // Outputs: AAA Pass
+// const contrastRatio = getContrastRatio('#000', '#FFF');
+// console.log(checkAaCompliance(contrastRatio)); // Outputs: AA Pass
+// console.log(checkAaaCompliance(contrastRatio)); // Outputs: AAA Pass
