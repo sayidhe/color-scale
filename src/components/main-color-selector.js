@@ -32,6 +32,8 @@ const SliderWrapper = styled.div`
   align-items: center;
 `
 
+
+
 const MainColorSelector = ({
   mainColor,
   r,

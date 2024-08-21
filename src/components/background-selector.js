@@ -111,7 +111,7 @@ const BackgroundSelector = ({ setBgColor, darkColors, lightColors, lightColorsAm
                   className="Dot"
                   key={index}
                   color={color}
-                  onClick={() => handleColorSelect(color, `l-${lightColorsAmount - index}`)}
+                  onClick={() => handleColorSelect(color, `l-${lightColorsAmount - index - 1}`)}
                   selected={selectedColor === color}
                   style={{ '--borderColor': getBorderColor(color) }}
                 />

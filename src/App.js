@@ -181,24 +181,27 @@ const ScaleApp = () => {
     updateRgbWithMainColor(typedColorFiltered)
   }
 
-  const rgbToMainColor = () => {
-    setTimeout(() => {
-      setMainColor(hexToNumber(Color(`rgb(${r}, ${g}, ${b})`).hex()))
-    }, 0)
-  }
-
   const handleRChange = (value) => {
-    setR(value)
-    rgbToMainColor()
-  }
+    const newR = parseInt(value, 10);
+    setR(newR);
+    rgbToMainColor(newR, g, b);
+  };
+  
   const handleGChange = (value) => {
-    setG(value)
-    rgbToMainColor()
-  }
+    const newG = parseInt(value, 10);
+    setG(newG);
+    rgbToMainColor(r, newG, b);
+  };
+  
   const handleBChange = (value) => {
-    setB(value)
-    rgbToMainColor()
-  }
+    const newB = parseInt(value, 10);
+    setB(newB);
+    rgbToMainColor(r, g, newB);
+  };
+
+  const rgbToMainColor = (newR, newG, newB) => {
+    setMainColor(hexToNumber(Color(`rgb(${newR}, ${newG}, ${newB})`).hex()));
+  };
   
   const bgRefToNumber = (ref) => {
     if(ref.includes('l-')) {
@@ -213,26 +216,24 @@ const ScaleApp = () => {
   const lightColors = getColorsList(lightColorsAmount, lightestAmount, 'white', lightColorsMixRotate, lightSaturation, mainColor).map((color) => (color))
   
   const setBgColorVar = () => {
-    let color = ''
-
-    if(bgColor === undefined) {
-      color = defaultState.bgColor
-      setBgColor(defaultState.bgColor)
+    let color = '';
+  
+    if (!bgColor) {
+      color = defaultState.bgColor;
+      setBgColor(defaultState.bgColor);
     } else {
-      if(bgColor === 'white' || bgColor === 'black') {
-        color = bgColor
-      }
-      
-      if(bgColor.includes('l-')) {
-        color = lightColors[lightColorsAmount - bgRefToNumber(bgColor)]
-      }
-      
-      if(bgColor.includes('d-')) {
-        color = darkColors[bgRefToNumber(bgColor)]
+      if (bgColor === 'white' || bgColor === 'black') {
+        color = bgColor;
+      } else if (bgColor.includes('l-')) {
+        const index = lightColorsAmount - bgRefToNumber(bgColor) - 1;
+        color = lightColors[index] || defaultState.bgColor;
+      } else if (bgColor.includes('d-')) {
+        const index = bgRefToNumber(bgColor);
+        color = darkColors[index] || defaultState.bgColor;
       }
     }
-
-    document.documentElement.style.setProperty('--bodyBg', color)
+  
+    document.documentElement.style.setProperty('--bodyBg', color);
   }
   setBgColorVar()
 
@@ -349,7 +350,7 @@ const ScaleApp = () => {
                 type='number' 
                 sufix='%' 
                 min={0}
-                max={99}
+                max={100}
                 withSlider
                 label='Darkness'
               />
@@ -403,7 +404,7 @@ const ScaleApp = () => {
                 onChange={(e) => setLightestAmount(e.target.value)}
                 onBlur={(e) => !e.target.value && setLightestAmount(0)}
                 min={0} 
-                max={99} 
+                max={100} 
                 type='number'
                 sufix='%'
                 withSlider
