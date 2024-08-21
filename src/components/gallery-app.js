@@ -77,7 +77,7 @@ const GalleryApp = () => (
       <Link to="/">scale/</Link>gallery
 
       <SubmitLink
-        href="https://hayk15.typeform.com/to/mVHrni"
+        href="https://bmc2w9j84ik.typeform.com/to/bjjwBWBW"
         data-mode="drawer_right"
         data-hide-headers={true}
         data-hide-footer={true}

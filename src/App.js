@@ -448,16 +448,18 @@ const ScaleApp = () => {
       <Footer />
     </MainWrapper>
   )
-  
 }
 
-const App = () => (
-  <Router basename={process.env.PUBLIC_URL}>
-    <Routes>
-      <Route path="/" element={<ScaleApp />} />
-      <Route path="/gallery" element={<GalleryApp />} />
-    </Routes>
-  </Router>
-);
+const App = () => {
+  console.log('Base URL:', process.env.PUBLIC_URL);
+  return (
+    <Router basename={process.env.PUBLIC_URL}>
+      <Routes>
+        <Route path="/" element={<ScaleApp />} />
+        <Route path="/gallery" element={<GalleryApp />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App
