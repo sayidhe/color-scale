@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/color-scale/static/css/main.1b792c60.css",
-    "main.js": "/color-scale/static/js/main.180ed29b.js",
+    "main.js": "/color-scale/static/js/main.a7af2cac.js",
     "index.html": "/color-scale/index.html",
     "main.1b792c60.css.map": "/color-scale/static/css/main.1b792c60.css.map",
-    "main.180ed29b.js.map": "/color-scale/static/js/main.180ed29b.js.map"
+    "main.a7af2cac.js.map": "/color-scale/static/js/main.a7af2cac.js.map"
   },
   "entrypoints": [
     "static/css/main.1b792c60.css",
-    "static/js/main.180ed29b.js"
+    "static/js/main.a7af2cac.js"
   ]
 }
