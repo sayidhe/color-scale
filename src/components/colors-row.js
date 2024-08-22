@@ -102,7 +102,7 @@ const ColorInfo = ({ color, bgColor, $main }) => {
           style={{ position: 'relative' }}
         >
           {AA}
-          <Tooltip show={showAaTooltip} rows={aaRows} status={AA === 'AA Pass' ? 'Pass' : 'Fail'} />
+          <Tooltip show={showAaTooltip} rows={aaRows} status={AA === 'AA ✅' ? 'Pass' : 'Fail'} />
         </div>
         <div
           onMouseOver={() => setShowAaaTooltip(true)}
@@ -110,7 +110,7 @@ const ColorInfo = ({ color, bgColor, $main }) => {
           style={{ position: 'relative' }}
         >
           {AAA}
-          <Tooltip show={showAaaTooltip} rows={aaaRows} status={AAA === 'AAA Pass' ? 'Pass' : 'Fail'} />
+          <Tooltip show={showAaaTooltip} rows={aaaRows} status={AAA === 'AAA ✅' ? 'Pass' : 'Fail'} />
         </div>
       </div>
     </ColorContainer>
