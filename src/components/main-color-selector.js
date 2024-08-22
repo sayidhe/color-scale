@@ -32,6 +32,15 @@ const SliderWrapper = styled.div`
   align-items: center;
 `
 
+const ValueLabel = styled.div`
+  margin-left: 12px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  position: relative;
+  top: 2px;
+`
+
 
 
 const MainColorSelector = ({
@@ -54,18 +63,21 @@ const MainColorSelector = ({
           R
         </SliderLabel>
         <Slider type='range' min={0} max={255} color={numberToHex(mainColor)} value={r} onChange={onRChange} />
+        <ValueLabel>{r}</ValueLabel>
       </SliderWrapper>
       <SliderWrapper>
         <SliderLabel>
           G
         </SliderLabel>
         <Slider type='range' min={0} max={255} color={numberToHex(mainColor)} value={g} onChange={onGChange} />
+        <ValueLabel>{g}</ValueLabel>
       </SliderWrapper>
       <SliderWrapper>
         <SliderLabel>
           B
         </SliderLabel>
         <Slider type='range' min={0} max={255} color={numberToHex(mainColor)} value={b} onChange={onBChange} />
+        <ValueLabel>{b}</ValueLabel>
       </SliderWrapper>
     </InputsRowItem>
   </InputsRow>
